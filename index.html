@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A clean, responsive task manager with local storage.">
+  <title>TaskFlow — To-Do List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TaskFlow home"><span class="brand-mark">✓</span> taskflow<span class="brand-dot">.</span></a>
+      <span class="save-status"><span class="live-dot"></span> Saved on this device</span>
+    </header>
+
+    <section class="welcome">
+      <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+      <h1>Make today <span>count.</span></h1>
+      <p class="subtitle">A little progress every day adds up to big results.</p>
+    </section>
+
+    <section class="stats" aria-label="Task summary">
+      <article class="stat-card"><span class="stat-icon purple">▤</span><div><strong id="totalCount">0</strong><span>Total tasks</span></div></article>
+      <article class="stat-card"><span class="stat-icon orange">◷</span><div><strong id="activeCount">0</strong><span>In progress</span></div></article>
+      <article class="stat-card"><span class="stat-icon green">✓</span><div><strong id="completedCount">0</strong><span>Completed</span></div></article>
+    </section>
+
+    <section class="task-panel">
+      <div class="panel-heading">
+        <div><p class="eyebrow">STAY ON TRACK</p><h2>My tasks</h2></div>
+        <span class="today" id="todayLabel"></span>
+      </div>
+
+      <form id="taskForm" class="add-form">
+        <label class="sr-only" for="taskInput">Enter a new task</label>
+        <input id="taskInput" type="text" maxlength="120" placeholder="What needs to get done?" autocomplete="off" required>
+        <button type="submit" class="add-button"><span>＋</span> Add task</button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filter tasks">
+          <button type="button" class="filter active" data-filter="all" aria-pressed="true">All <span id="allFilterCount">0</span></button>
+          <button type="button" class="filter" data-filter="active" aria-pressed="false">Active</button>
+          <button type="button" class="filter" data-filter="completed" aria-pressed="false">Completed</button>
+        </div>
+        <button type="button" id="clearCompleted" class="clear-button">Clear completed</button>
+      </div>
+
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+      <div id="emptyState" class="empty-state">
+        <div class="empty-illustration">✦</div>
+        <h3 id="emptyTitle">Nothing on your list yet</h3>
+        <p id="emptyMessage">Add your first task above and make a start.</p>
+      </div>
+      <div class="panel-footer"><span id="remainingLabel">0 tasks left</span><span>Small steps. Big wins. ✨</span></div>
+    </section>
+
+    <footer>Built with HTML, CSS & JavaScript · Your tasks stay in your browser.</footer>
+  </main>
+
+  <dialog id="editDialog" class="edit-dialog">
+    <form id="editForm" method="dialog">
+      <p class="eyebrow">UPDATE TASK</p>
+      <h2>Edit your task</h2>
+      <label class="sr-only" for="editInput">Task title</label>
+      <input id="editInput" type="text" maxlength="120" required>
+      <div class="dialog-actions">
+        <button type="button" class="cancel-button" id="cancelEdit">Cancel</button>
+        <button type="submit" class="add-button">Save changes</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
